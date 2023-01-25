@@ -1,5 +1,9 @@
 # Grad Project Files - *Changelog*
 ### Week 3
+Jan 25:
+- (Ayesha) Dataset Addition from this site https://www.lifeprint.com/asl101/index/sign-language-phrases.htm    
+- (Adam) Made changes to the Encoder_Decoder Notebook for the PoC Presentation    
+
 Jan 23:
 - (Ayesha) Dataset changes
   - Removing all maths sentences
