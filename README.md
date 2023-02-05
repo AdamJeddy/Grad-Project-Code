@@ -1,11 +1,16 @@
-# Grad Project Files - *Changelog*
+# Grad Project Files - *Changelog* <!-- omit in toc -->
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-- [Grad Project Files - *Changelog*](#grad-project-files---changelog)
-  - [Table of Contents](#table-of-contents)
-  - [Week 3](#week-3)
-  - [Week 2](#week-2)
+- [Week 4](#week-4)
+- [Week 3](#week-3)
+- [Week 2](#week-2)
+
+## Week 4
+
+Feb 5:
+
+- (Adam) Added Encoder_Decoder V4, removed .pkl files
 
 ## Week 3
 
