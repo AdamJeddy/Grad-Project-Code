@@ -10,7 +10,9 @@
 
 Feb 5:
 
-- (Adam) Added Encoder_Decoder V4, removed .pkl files
+- (Adam) Added Encoder_Decoder V4
+  - Removed .pkl files as they are not required (check commit description for more details)
+  - Added a file with the dataset rows doubled for testing
 
 ## Week 3
 
