@@ -2,9 +2,12 @@
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Week 5](#week-5)
 - [Week 4](#week-4)
 - [Week 3](#week-3)
 - [Week 2](#week-2)
+
+## Week 5
 
 ## Week 4
 
