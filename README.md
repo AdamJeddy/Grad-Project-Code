@@ -9,6 +9,19 @@
 
 ## Week 5
 
+Feb 6:
+
+- (Adam) Added a script for NLP model
+  - Reorganized `Scripts` folder into 2 parts; Data & Model
+    - `Scripts/Data` holds all the scripts related to data extraction
+    - `Scripts/Model` holds the python code for the NLP model
+  - Updated `Encoder_Decoder_V4` file to  save model in H4 format
+  - Added `Scripts/Model` folder
+    - `NLP_Model.py`: Refactored the python notebook code
+    - `functions.py`: Unimportant functions moved to this
+    - `myVars.txt`: Dependant variables that take the longest time to load are now saved in here (over a pkl file for readability)
+    - Incomplete task: Change the decoder function code to take user inputs
+
 ## Week 4
 
 Feb 5:
