@@ -9,6 +9,18 @@
 
 ## Week 5
 
+Feb 8:
+
+- (Adam) Major update to `NLP_Model.py`
+  - Combined generate_batch function with decode_sequence and now it takes an user input instead of a dataset
+  - Made it so that the python program can take an argument, this will be the ASL text
+  - Removed unused imports
+  - Added new colors for printing text
+  - Removed code for importing and preprocessing dataset
+  - Removing import to other file with functions, only 1 function was being used so it has now been moved to the file itself (read_list_from_file)
+  - Added timing for all sections of the code
+  - Removed all unnecessary code
+
 Feb 6:
 
 - (Adam) Added a script for NLP model
