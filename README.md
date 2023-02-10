@@ -9,6 +9,12 @@
 
 ## Week 5
 
+Feb 10:
+
+- (Adam) Added ReadMe file and small update to `NLP_Model.py`
+  - ReadMe file for the `Scripts/Model` directory that shows how to use the NLP Model
+  - `NLP_Model.py` now has a loop that keeps taking input
+
 Feb 8:
 
 - (Adam) Major update to `NLP_Model.py`
