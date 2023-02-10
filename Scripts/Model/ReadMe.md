@@ -24,14 +24,14 @@ This is a script for translating American Sign Language (ASL) gloss to English. 
 
 ## How it works
 
-When the script is run, it will prompt the user to input an ASL gloss sentence. The input sentence is then processed by the encoder to obtain the thought vector, which is then passed to the decoder to generate the translated English sentence. The generated sentence is then printed to the console.
+When the script is run, it will prompt the user to input an ASL gloss sentence. The input sentence is then processed by the encoder to obtain the internal state vectors, which is then passed to the decoder to generate the translated English sentence . The generated sentence is then printed to the console.
 
 ## How to use
 
 1. Clone the repository to your local machine or have the 3 files downloaded mentioned under [File descriptions](#file-descriptions)
 
     ``` bash
-    https://github.com/AdamJeddy/Grad-Project-Stuff.git
+    git clone https://github.com/AdamJeddy/Grad-Project-Stuff.git
     ```
 
 2. Navigate to the directory where the code is located. (if downloaded separately then make sure all the files are in the same directory)
