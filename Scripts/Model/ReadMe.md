@@ -6,8 +6,8 @@ This is a script for translating American Sign Language (ASL) gloss to English. 
 
 - [Prerequisites](#prerequisites)
 - [File descriptions](#file-descriptions)
-- [How it works](#how-it-works)
 - [How to use](#how-to-use)
+- [How it works](#how-it-works)
 
 
 ## Prerequisites
@@ -21,10 +21,6 @@ This is a script for translating American Sign Language (ASL) gloss to English. 
 - `NLP_Model.py`: The main code file that contains the code to translate ASL gloss to English.
 - `myVars.txt`: The file that contains the variables required for the code to run.
 - `nmt_weights_v4.h5`: The trained model weights file.
-
-## How it works
-
-When the script is run, it will prompt the user to input an ASL gloss sentence. The input sentence is then processed by the encoder to obtain the internal state vectors, which is then passed to the decoder to generate the translated English sentence . The generated sentence is then printed to the console.
 
 ## How to use
 
@@ -53,6 +49,20 @@ When the script is run, it will prompt the user to input an ASL gloss sentence. 
     # or 
     Input ASL sentence: exit # to exit/end the program
     ```
+
+## How it works
+
+When the script is run, it will prompt the user to input an ASL gloss sentence. The input sentence is then processed by the encoder to obtain the internal state vectors, which is then passed to the decoder to generate the translated English sentence . The generated sentence is then printed to the console.
+
+In more detail:
+
+1. Encoder reads the input sequence and summarizes the information in something called as the internal state vectors (in case of LSTM these are called as the hidden state and cell state vectors). We discard the outputs of the encoder and only preserve the internal states.
+
+2. Decoder is an LSTM whose initial states are initialized to the final states of the Encoder LSTM. Using these initial states, decoder starts generating the output sequence.
+
+3. The decoder behaves a bit differently during the training and inference procedure. During the training, we use a technique call teacher forcing which helps to train the decoder faster. During inference, the input to the decoder at each time step is the output from the previous time step.
+
+4. Intuitively, the encoder summarizes the input sequence into state vectors (sometimes also called as Thought vectors), which are then fed to the decoder which starts generating the output sequence given the Thought vectors. The decoder is just a language model conditioned on the initial states.
 
 ___
 **Note**: The model's performance may be improved by fine-tuning the model on a larger and more diverse training dataset, or by using a more advanced NMT architecture (which will increase processing time). Additionally, the script uses a greedy decoding strategy, meaning that it always chooses the most likely English word at each time step without considering the full context of the sentence. More sophisticated decoding strategies, such as beam search, could be implemented to generate more accurate translations.
