@@ -33,7 +33,7 @@ st = time.time()
 
 max_length_src, max_length_tar, num_decoder_tokens, input_token_index, target_token_index, reverse_target_char_index = read_list_from_file()
 
-print(colors.UNDERLINE_GREEN + 'Importing Variables:' + colors.ENDC, round(time.time() - st, 2), 'seconds\n')
+print(colors.UNDERLINE_GREEN + 'Importing Variables:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
 st = time.time()
 
 latent_dim = 50
@@ -122,7 +122,9 @@ def decode_sequence(input_text):
         target_seq[0, 0] = sampled_token_index
         states_value = [h, c]
     
-    return decoded_sentence
+    return decoded_sentence[:-4]
+
+# Add a for loop to run this on multiple sentences
 
 if len(sys.argv) > 1:
     input_text = sys.argv[1].lower()
@@ -132,7 +134,19 @@ else:
 
 decoded_sentence = decode_sequence(input_text)
 print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC, input_text)
-print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence[:-4])
+print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
 
 print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
+
+while True:
+    input_text = input(colors.WARNING + 'Input ASL sentence: ' + colors.ENDC)
+    st = time.time()
+    input_text = input_text.lower()
+    if input_text == 'exit':
+        break
+    decoded_sentence = decode_sequence(input_text)
+    print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
+    print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
+
+
 print(colors.UNDERLINE_GREEN + 'Total Execution time:' + colors.ENDC, round(time.time() - st_final, 2), 'seconds')
