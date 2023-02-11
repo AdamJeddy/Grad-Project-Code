@@ -9,6 +9,11 @@
 
 ## Week 5
 
+Feb 11:
+
+- Restructured the repository
+  - Added 2 Main folders `NLP Model` and `Computer Vision Model`
+
 Feb 10:
 
 - (Adam) Added ReadMe file and small update to `NLP_Model.py`
