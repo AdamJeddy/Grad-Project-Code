@@ -10,9 +10,9 @@
 ## Week 5
 
 Feb 12:
-- Added the 'Computer Vision' folder
-  - With 'Notebooks' folder containing the main notebook and the saved weights
-  - With 'Scripts' folder containing 3 scripts for training data collection
+- Added the `Computer Vision` folder
+  - With `Notebooks` folder containing the main notebook and the saved weights
+  - With `Scripts` folder containing 3 scripts for training data collection
 
 - Restructured the `NLP Model` folder
   - Reduced the folder hierarchy for better easy navigation
