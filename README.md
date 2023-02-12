@@ -1,4 +1,4 @@
-# Grad Project Files - *Changelog* <!-- omit in toc -->
+# Graduation Project Code - *Changelog* <!-- omit in toc -->
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -9,10 +9,16 @@
 
 ## Week 5
 
+Feb 12:
+
+- Restructured the `NLP Model` folder
+  - Reduced the folder hierarchy for better easy navigation
+  - Added a `ReadMe` file
+
 Feb 11:
 
 - Restructured the repository
-  - Added 2 Main folders `NLP Model` and `Computer Vision Model`
+- Added 2 Main folders for each Model; `NLP Model` and `Computer Vision Model`.
 
 Feb 10:
 

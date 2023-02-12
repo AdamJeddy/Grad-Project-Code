@@ -1,5 +1,5 @@
 def Book_text_convert():
-    with open('PDF_ASL_Gloss_Extract.txt', 'r') as f:
+    with open('../PDF_ASL_Gloss_Extract.txt', 'r') as f:
         num = 0
         for line in f:
             line = line.replace(',', '').replace('.','').replace('Sign: ', '').replace('English: ', '')
@@ -25,7 +25,7 @@ def Website_text_convert():
                 string_holder = ""
             num+=1
         # save string_list to csv
-        with open('New_ASL_English.csv', 'w') as f2:
+        with open('../New_ASL_English.csv', 'w') as f2:
             for i in string_list:
                 f2.write(i)
                 f2.write('\n')

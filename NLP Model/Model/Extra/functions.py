@@ -1,7 +1,6 @@
 import numpy as np
 import re
 import string
-import pickle
 import ast
 
 def preprocess_data(df):
@@ -65,13 +64,13 @@ def get_variables(df):
     return max_length_src, max_length_tar, num_decoder_tokens, input_token_index, target_token_index, reverse_target_char_index
 
 def write_list_to_file(var_list):
-    outputFile = open( "myVars.txt", "w")
+    outputFile = open( "../myVars.txt", "w")
     outputFile.write(str(var_list))
     outputFile.flush()
     outputFile.close()
 
 def read_list_from_file():
-    inputFile = open( "myVars.txt", "r")
+    inputFile = open( "../myVars.txt", "r")
     lines = inputFile.readlines()
 
     objects = []

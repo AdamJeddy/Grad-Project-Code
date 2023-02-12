@@ -8,7 +8,6 @@ import sys
 # from functions import *
 
 class colors:
-    GREEN = '\033[92m'
     RED = '\033[91m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
@@ -114,8 +113,7 @@ def decode_sequence(input_text):
         sampled_char = reverse_target_char_index[sampled_token_index]
         decoded_sentence += ' ' + sampled_char
         
-        if (sampled_char == '_END' or
-           len(decoded_sentence) > 50):
+        if (sampled_char == '_END' or len(decoded_sentence) > 50):
             stop_condition = True
         
         target_seq = np.zeros((1, 1))
@@ -123,8 +121,6 @@ def decode_sequence(input_text):
         states_value = [h, c]
     
     return decoded_sentence[:-4]
-
-# Add a for loop to run this on multiple sentences
 
 if len(sys.argv) > 1:
     input_text = sys.argv[1].lower()
