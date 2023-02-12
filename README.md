@@ -10,7 +10,7 @@
 ## Week 5
 
 Feb 12:
-- Added the `Computer Vision` folder
+- Added the `Computer Vision Model` folder
   - With `Notebooks` folder containing the main notebook and the saved weights
   - With `Scripts` folder containing 3 scripts for training data collection
 
