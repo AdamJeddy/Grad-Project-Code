@@ -12,6 +12,7 @@
 
 Feb 22:
 
+- Uploaded 4 new models with training Camera position as Standing and Seated
 - Updated `NLP_Model.py` so that it handles words that aren't part of the dictionary
 
 Feb 21:
