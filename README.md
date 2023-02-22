@@ -2,14 +2,27 @@
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Week 7](#week-7)
 - [Week 5](#week-5)
 - [Week 4](#week-4)
 - [Week 3](#week-3)
 - [Week 2](#week-2)
 
+## Week 7
+
+Feb 22:
+
+- Updated `NLP_Model.py` so that it handles words that aren't part of the dictionary
+
+Feb 21:
+
+- Created new issues and assigned who needs to work on them
+- Removed all additional Datasets
+
 ## Week 5
 
 Feb 12:
+
 - Added the `Computer Vision Model` folder
   - With `Notebooks` folder containing the main notebook and the saved weights
   - With `Scripts` folder containing 3 scripts for training data collection
