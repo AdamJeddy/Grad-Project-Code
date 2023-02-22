@@ -8,11 +8,10 @@ import sys
 # from functions import *
 
 class colors:
-    RED = '\033[91m'
+    RED_BOLD = '\033[91m' + '\033[1m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
     ENDC = '\033[0m'
-    BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     UNDERLINE_GREEN = '\033[4m' + '\033[92m'
 
@@ -94,11 +93,15 @@ st = time.time()
 # Reverse-lookup token index to decode sequences back to something readable.
 def decode_sequence(input_text):
     encoder_input_data = np.zeros((1, max_length_src), dtype='float32')
-
-    for i, input_text in enumerate([input_text]):
-        # print(colors.WARNING + "i:", i, " | input_text: ", input_text, "" + colors.ENDC)
-        for t, word in enumerate(input_text.split()):
-            encoder_input_data[i, t] = input_token_index[word]
+    error_word = ''
+    try:
+        for i, input_text in enumerate([input_text]):
+            # print(colors.WARNING + "i:", i, " | input_text: ", input_text, "" + colors.ENDC)
+            for t, word in enumerate(input_text.split()):
+                error_word = word
+                encoder_input_data[i, t] = input_token_index[word]
+    except:
+        return colors.RED_BOLD + '"' + error_word + '" doesnt exist in the dataset.' + colors.ENDC
     
     states_value = encoder_model.predict(encoder_input_data)
     
@@ -125,7 +128,7 @@ def decode_sequence(input_text):
 if len(sys.argv) > 1:
     input_text = sys.argv[1].lower()
 else:
-    print(colors.RED + colors.BOLD + 'No input sentence provided. Using default sentence.' + colors.ENDC)
+    print(colors.RED_BOLD + 'No input sentence provided. Using default sentence.' + colors.ENDC)
     input_text = "you live where".lower()
 
 decoded_sentence = decode_sequence(input_text)
