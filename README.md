@@ -2,11 +2,26 @@
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Week 8](#week-8)
 - [Week 7](#week-7)
 - [Week 5](#week-5)
 - [Week 4](#week-4)
 - [Week 3](#week-3)
 - [Week 2](#week-2)
+
+## Week 8
+
+Mar 1:
+
+- Computer Vision data collection script changes
+  - Removed useless Imports
+  - Changed draw_landmarks (Face landmarks)
+  - Added function (extract_keypoints)
+  - Changed sequence length to 25 and number of sequences to 40
+
+Feb 28:
+
+- Added 2 new datasets for NLP
 
 ## Week 7
 
