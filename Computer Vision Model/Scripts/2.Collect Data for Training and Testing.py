@@ -3,9 +3,6 @@ import pandas as pd
 import numpy as np
 import cv2
 import os
-import matplotlib.pyplot as plt
-%matplotlib inline
-import time
 import mediapipe as mp
 
 mp_holistic = mp.solutions.holistic # Holistic model - make our detection
@@ -24,7 +21,7 @@ def mediapipe_detection(image, model):
 
 # To draw landmarks and pose connections on the frame using the results extracted
 def draw_landmarks(image, results):
-    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACE_CONNECTIONS) # Draw face connections
+    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION) # Draw face connections
     mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS) # Draw pose connections
     mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw left hand connections
     mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw right hand connections
@@ -83,17 +80,23 @@ def Data_Collection(DATA_PATH, actions, no_sequences, sequence_length):
         cv2.destroyAllWindows()
         print('Data Collection Complete!!!')
 
+def extract_keypoints(results):
+    pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+    face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+    lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+    rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+    return np.concatenate([pose, face, lh, rh])
 
 # --------------- Function Call - Start Collection ------------ #
 
 # Path for exported data, numpy arrays
 DATA_PATH = os.path.join('Data Collection')
 # Actions that we try to detect
-actions = np.array(['NoSign','hello', 'thanks', 'iloveyou'])
+actions = np.array(['NoSign'])
 # 30 videos worth of data
-no_sequences = 30
-# Videos are going to be 30 frames in length
-sequence_length = 30
+no_sequences = 40
+# Videos are going to be 25 frames in length
+sequence_length = 25
 
 Data_Collection(DATA_PATH, actions, no_sequences, sequence_length)
 

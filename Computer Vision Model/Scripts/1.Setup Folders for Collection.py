@@ -1,24 +1,21 @@
 # imports
-import pandas as pd
 import numpy as np
-import cv2
 import os
-import matplotlib.pyplot as plt
-%matplotlib inline
-import time
-import mediapipe as mp
 
-# Path for exported data BY Default the folder is presernt in the directory
+# Path for exported data BY Default the folder is present in the directory
 if not os.path.exists(os.path.join('Data Collection')):
     os.makedirs(os.path.join('Data Collection'))
 
 DATA_PATH = os.path.join('Data Collection')
+
 # Actions that we try to detect
-actions = np.array(['NoSign','hello', 'thanks', 'iloveyou'])
+# *** CHANGE THE ACTIONS HERE ***
+actions = np.array(['NoSign'])
+
 # 30 videos worth of data
-no_sequences = 30
+no_sequences = 40
 # Videos are going to be 30 frames in length
-# sequence_length = 30
+# sequence_length = 25
 
 # ---------- FOLDER CREATION --------------#
 def Folder_Setup(DATA_PATH, actions, no_sequences):

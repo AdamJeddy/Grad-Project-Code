@@ -1,11 +1,5 @@
 # imports
-import pandas as pd
-import numpy as np
 import cv2
-import os
-import matplotlib.pyplot as plt
-%matplotlib inline
-import time
 import mediapipe as mp
 
 mp_holistic = mp.solutions.holistic # Holistic model - make our detection
@@ -24,7 +18,7 @@ def mediapipe_detection(image, model):
 
 # To draw landmarks and pose connections on the frame using the results extracted
 def draw_landmarks(image, results):
-    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACE_CONNECTIONS) # Draw face connections
+    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION) # Draw face connections
     mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS) # Draw pose connections
     mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw left hand connections
     mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw right hand connections
