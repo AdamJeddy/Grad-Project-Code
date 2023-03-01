@@ -34,6 +34,8 @@ def Data_Collection(DATA_PATH, actions, no_sequences, sequence_length):
     cap = cv2.VideoCapture(0)
     # Set mediapipe model
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+        # Wait 2 secs before starting collection
+        cv2.waitKey(2000)
 
         # Loop through actions
         for action in actions:
