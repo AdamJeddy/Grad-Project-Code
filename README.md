@@ -11,6 +11,12 @@
 
 ## Week 8
 
+Mar 3:
+- Computer Vision Data Collection script updated
+  - Added code to prompt action on screen while collecting data
+- Uploaded the Updated version of `Main Notebook - Updated.ipynb`
+- Uploaded new models in `Saved Weights` folder
+
 Mar 1:
 
 - Computer Vision data collection script changes
