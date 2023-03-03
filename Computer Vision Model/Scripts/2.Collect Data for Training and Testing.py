@@ -26,6 +26,14 @@ def draw_landmarks(image, results):
     mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw left hand connections
     mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw right hand connections
 
+# To extract keypoints from frame
+def extract_keypoints(results):
+    pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+    face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+    lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+    rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+    return np.concatenate([pose, face, lh, rh])
+    
 # ------------- MAIN - Start Collection Loop -----------
 
 def Data_Collection(DATA_PATH, actions, no_sequences, sequence_length):
@@ -36,9 +44,17 @@ def Data_Collection(DATA_PATH, actions, no_sequences, sequence_length):
     with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
         # Wait 2 secs before starting collection
         cv2.waitKey(2000)
-
+        
         # Loop through actions
         for action in actions:
+            
+            # Display a prompt for next action to perform
+            blank_screen = np.zeros((480,640,3), dtype="uint8")
+            cv2.imshow('OpenCV Feed', blank_screen)
+            cv2.putText(blank_screen, 'Action: {}'.format(action), (170,210), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0,255,0), 2, cv2.LINE_AA)
+            cv2.imshow('OpenCV Feed', blank_screen)
+            cv2.waitKey(2000)
+            
             # Loop through sequences aka videos
             for sequence in range(no_sequences):
                 # Loop through video length aka sequence length
@@ -82,12 +98,6 @@ def Data_Collection(DATA_PATH, actions, no_sequences, sequence_length):
         cv2.destroyAllWindows()
         print('Data Collection Complete!!!')
 
-def extract_keypoints(results):
-    pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
-    face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
-    lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
-    rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
-    return np.concatenate([pose, face, lh, rh])
 
 # --------------- Function Call - Start Collection ------------ #
 
