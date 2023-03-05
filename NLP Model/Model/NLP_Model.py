@@ -1,3 +1,4 @@
+import re
 from keras.layers import Input, LSTM, Embedding, Dense
 from keras.models import Model
 import numpy as np
@@ -125,27 +126,46 @@ def decode_sequence(input_text):
     
     return decoded_sentence[:-4]
 
-if len(sys.argv) > 1:
-    input_text = sys.argv[1].lower()
-else:
-    print(colors.RED_BOLD + 'No input sentence provided. Using default sentence.' + colors.ENDC)
-    input_text = "you live where".lower()
-
-decoded_sentence = decode_sequence(input_text)
-print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC, input_text)
-print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
-
-print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
+def preprocess_sentence(sentence):
+    # lower case to standardize the sentence and remove extra spaces
+    sentence = sentence.lower().strip()
+    # if QM-wig or 6 Ws or How is in the sentence, then it is a question
+    words = ['who', 'what', 'when', 'where', 'why', 'how']
+    question_flag = 0
+    if 'qm-wig' in sentence or any(word in sentence for word in words):
+        question_flag = 1
+    sentence = sentence.replace('qm-wig', '')
+    # remove punctuation (isn't required but im still including it)
+    sentence = re.sub(r"([?.!,])", "", sentence)
+    # replace numbers with words
+    number_replacements = {'1': " one ", '2':" two ", '3':" three ", '4':" four ", 
+                           '5':" five ", '6':" six ", '7':" seven ", '8':" eight ", 
+                           '9':" nine ", '0':" zero "}
+    for key, value in number_replacements.items():
+        sentence = sentence.replace(key, value)
+    # remove extra spaces
+    sentence = re.sub(r'[" "]+', " ", sentence)
+    sentence = sentence.strip()
+    return sentence, question_flag
 
 while True:
     input_text = input(colors.WARNING + 'Input ASL sentence: ' + colors.ENDC)
     st = time.time()
-    input_text = input_text.lower()
-    if input_text == 'exit':
+    prep_input, question_flag = preprocess_sentence(input_text)
+    if prep_input == 'exit':
         break
-    decoded_sentence = decode_sequence(input_text)
+    
+    # if only 1 word is given, then no need to decode
+    decoded_sentence = decode_sequence(prep_input) if len(prep_input.split()) > 1 else prep_input
+
+    # if '?' not in decoded sentence and original input had 'QM-wig' then add '?' at the end
+    if '?' not in decoded_sentence and question_flag == 1:
+        decoded_sentence = decoded_sentence.strip() + '?'
+
+    # Outputs
+    print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC + "'" + input_text + "'")
+    print(colors.WARNING + 'Preprocessed Input:' + colors.ENDC + "'" + prep_input + "'")
     print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
     print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
-
 
 print(colors.UNDERLINE_GREEN + 'Total Execution time:' + colors.ENDC, round(time.time() - st_final, 2), 'seconds')
