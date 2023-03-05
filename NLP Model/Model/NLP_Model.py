@@ -102,7 +102,7 @@ def decode_sequence(input_text):
                 error_word = word
                 encoder_input_data[i, t] = input_token_index[word]
     except:
-        return colors.RED_BOLD + '"' + error_word + '" doesnt exist in the dataset.' + colors.ENDC
+        return colors.RED_BOLD + '"' + error_word + '" doesn\'t exist in the dataset.' + colors.ENDC
     
     states_value = encoder_model.predict(encoder_input_data)
     
@@ -135,6 +135,7 @@ def preprocess_sentence(sentence):
     if 'qm-wig' in sentence or any(word in sentence for word in words):
         question_flag = 1
     sentence = sentence.replace('qm-wig', '')
+
     # remove punctuation (isn't required but im still including it)
     sentence = re.sub(r"([?.!,])", "", sentence)
     # replace numbers with words
@@ -146,12 +147,38 @@ def preprocess_sentence(sentence):
     # remove extra spaces
     sentence = re.sub(r'[" "]+', " ", sentence)
     sentence = sentence.strip()
-    return sentence, question_flag
+
+    words = sentence.split()
+    result = []
+    # Empty temporary list to store single letters
+    temp = []
+    for word in words:
+        if len(word) == 1:
+            temp.append(word)
+        else:
+            # If there are any single letters in the temporary list,
+            # join them with a dash and append to the result list
+            if temp:
+                result.append('-'.join(temp))
+                temp = []
+            # Append the non-single letter word to the result list
+            result.append(word)
+    if temp:
+        result.append('-'.join(temp))
+    
+    # Save the dashed words in a list so that it can be replaced later
+    replaced_words = [match for match in result if "-" in match]
+    # Replace the single letters with 'XXXXX' in the result list
+    result = ["XXXXX" if '-' in element else element for element in result]
+    # Join the words in the result list back into a string sentence
+    sentence = ' '.join(result)
+
+    return sentence, question_flag, replaced_words
 
 while True:
     input_text = input(colors.WARNING + 'Input ASL sentence: ' + colors.ENDC)
     st = time.time()
-    prep_input, question_flag = preprocess_sentence(input_text)
+    prep_input, question_flag, replaced_words = preprocess_sentence(input_text)
     if prep_input == 'exit':
         break
     
@@ -161,6 +188,10 @@ while True:
     # if '?' not in decoded sentence and original input had 'QM-wig' then add '?' at the end
     if '?' not in decoded_sentence and question_flag == 1:
         decoded_sentence = decoded_sentence.strip() + '?'
+
+    # Replace the 'XXXXX' with the original single letter words
+    for word in replaced_words:
+        decoded_sentence = decoded_sentence.replace('XXXXX', word, 1)
 
     # Outputs
     print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC + "'" + input_text + "'")
