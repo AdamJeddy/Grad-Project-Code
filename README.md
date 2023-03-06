@@ -2,6 +2,7 @@
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Week 9](#week-9)
 - [Week 8](#week-8)
 - [Week 7](#week-7)
 - [Week 5](#week-5)
@@ -9,9 +10,32 @@
 - [Week 3](#week-3)
 - [Week 2](#week-2)
 
+## Week 9
+
+Mar 6:
+
+- Dataset changes
+  - Combined 2 datasets (Dataset 1 and Dataset 2) into one dataset - `Dataset_1780_rows.csv`
+  - Created a double version of the dataset
+  - Fixed finger spelling placeholders
+  - Added new sentences
+- Updated NLP Script
+  - Handles finger spelling now
+  - Adds '?' after 6 W's and How
+  - Fixed hardcoded values when initialing model
+- Updated weights and `myVars.txt` for the NLP model
+
 ## Week 8
 
+Mar 5:
+
+- Updated NLP Script
+  - Added function `preprocess_sentence` that will handle all preprocessing
+  - Added code to handle finger spelling
+  - Handling '?' (QM-wig) and manually adding ? to decoded sentence
+
 Mar 3:
+
 - Computer Vision Data Collection script updated
   - Added code to prompt action on screen while collecting data
 - Uploaded the Updated version of `Main Notebook - Updated.ipynb`
