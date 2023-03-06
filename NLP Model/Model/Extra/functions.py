@@ -51,7 +51,7 @@ def get_variables(df):
     target_words = sorted(list(all_eng_words))
 
     # Calculate Vocab size for both source and target
-    #num_encoder_tokens = len(all_ASL_words) + 1
+    num_encoder_tokens = len(all_ASL_words) + 1
     num_decoder_tokens = len(all_eng_words) + 2
 
     # Create word to token dictionary for both source and target
@@ -61,7 +61,7 @@ def get_variables(df):
     # Create token to word dictionary for both source and target
     reverse_target_char_index = dict((i, word) for word, i in target_token_index.items())
 
-    return max_length_src, max_length_tar, num_decoder_tokens, input_token_index, target_token_index, reverse_target_char_index
+    return max_length_src, max_length_tar, num_encoder_tokens, num_decoder_tokens, input_token_index, target_token_index, reverse_target_char_index
 
 def write_list_to_file(var_list):
     outputFile = open( "../myVars.txt", "w")
