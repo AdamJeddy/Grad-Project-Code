@@ -2,10 +2,14 @@
 
 ### Demo.h5 / Demo2.h5 => 
 •	People: [Aamir, Adam, Ayesha]
+
 •	Words: ['NoSign','hello','thanks','please','sorry','you','work','where'] 
+
 •	No. of Vids per word: 40 vids
+
 •	Length of vid: 25 frames
-•	camera position: front cam
+
+•	Camera position: front cam
 
 
 ------- Parameter Test Cases-----------
@@ -42,9 +46,6 @@ For real time mobile vid testing:
 ### test12 => 3 words + 1 default, 30 vids, 30 frames  (camera position - sitting)
 ### test13 => 3 words + 1 default, 30 vids, 30 frames  (camera position -sitting)
 
-### test14 => ['NoSign','hello', 'thanks', 'iloveyou'], 30 vids, 25 frames  (camera position – front cam)
+###  test14 => ['NoSign','hello', 'thanks', 'iloveyou'], 30 vids, 25 frames  (camera position – front cam)
 ###  test15 => ['NoSign',’please , ‘yourewelcome, ’sorry’], 30 vids, 25 frames  (camera position – front cam)
 ###  test16 => ['NoSign',’please , ‘yourewelcome, ’sorry’], 30 vids, 25 frames  (camera position – front cam)
-
-
-
