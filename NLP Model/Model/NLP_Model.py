@@ -1,11 +1,9 @@
+import re
 from keras.layers import Input, LSTM, Embedding, Dense
 from keras.models import Model
 import numpy as np
 import time
 import ast
-import sys
-
-# from functions import *
 
 class colors:
     RED_BOLD = '\033[91m' + '\033[1m'
@@ -16,20 +14,20 @@ class colors:
     UNDERLINE_GREEN = '\033[4m' + '\033[92m'
 
 def read_list_from_file():
-    inputFile = open( "myVars.txt", "r")
+    inputFile = open( "myVar.txt", "r")
     lines = inputFile.readlines()
 
     objects = []
     for line in lines:
         objects.append(ast.literal_eval(line))
     
-    return objects[0][0], objects[0][1], objects[0][2], objects[0][3], objects[0][4], objects[0][5]
+    return objects[0][0], objects[0][1], objects[0][2], objects[0][3], objects[0][4], objects[0][5], objects[0][6]
 
 # get the start time
 st_final = time.time()
 st = time.time()
 
-max_length_src, max_length_tar, num_decoder_tokens, input_token_index, target_token_index, reverse_target_char_index = read_list_from_file()
+max_length_src, max_length_tar, num_encoder_tokens, num_decoder_tokens, input_token_index, target_token_index, reverse_target_char_index = read_list_from_file()
 
 print(colors.UNDERLINE_GREEN + 'Importing Variables:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
 st = time.time()
@@ -38,7 +36,7 @@ latent_dim = 50
 
 # Encoder
 encoder_inputs = Input(shape=(None,))
-enc_emb =  Embedding(2036, latent_dim, mask_zero = True)(encoder_inputs)
+enc_emb =  Embedding(num_encoder_tokens, latent_dim, mask_zero = True)(encoder_inputs)
 encoder_lstm = LSTM(latent_dim, return_state=True)
 encoder_outputs, state_h, state_c = encoder_lstm(enc_emb)
 # We discard `encoder_outputs` and only keep the states.
@@ -46,7 +44,7 @@ encoder_states = [state_h, state_c]
 
 # Set up the decoder, using `encoder_states` as initial state.
 decoder_inputs = Input(shape=(None,))
-dec_emb_layer = Embedding(2086, latent_dim, mask_zero = True)
+dec_emb_layer = Embedding(num_decoder_tokens, latent_dim, mask_zero = True)
 dec_emb = dec_emb_layer(decoder_inputs)
 
 '''
@@ -55,7 +53,7 @@ We don't use the return states in the training model, but we will use them in in
 '''
 decoder_lstm = LSTM(latent_dim, return_sequences=True, return_state=True)
 decoder_outputs, _, _ = decoder_lstm(dec_emb, initial_state=encoder_states)
-decoder_dense = Dense(2086, activation='softmax')
+decoder_dense = Dense(num_decoder_tokens, activation='softmax')
 decoder_outputs = decoder_dense(decoder_outputs)
 # Define the model that will turn `encoder_input_data` & `decoder_input_data` into `decoder_target_data`
 model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
@@ -63,7 +61,7 @@ model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
 print(colors.UNDERLINE_GREEN + 'Setting up Model:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
 st = time.time()
 
-model.load_weights('nmt_weights_v4.h5')
+model.load_weights('nmt_weights_v5.h5')
 
 print(colors.UNDERLINE_GREEN + 'Loading Weights:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
 st = time.time()
@@ -96,12 +94,12 @@ def decode_sequence(input_text):
     error_word = ''
     try:
         for i, input_text in enumerate([input_text]):
-            # print(colors.WARNING + "i:", i, " | input_text: ", input_text, "" + colors.ENDC)
+            #print(colors.WARNING + "i:", i, " | input_text: ", input_text, "" + colors.ENDC)
             for t, word in enumerate(input_text.split()):
                 error_word = word
                 encoder_input_data[i, t] = input_token_index[word]
     except:
-        return colors.RED_BOLD + '"' + error_word + '" doesnt exist in the dataset.' + colors.ENDC
+        return colors.RED_BOLD + '"' + error_word + '" doesn\'t exist in the dataset.' + colors.ENDC
     
     states_value = encoder_model.predict(encoder_input_data)
     
@@ -125,27 +123,83 @@ def decode_sequence(input_text):
     
     return decoded_sentence[:-4]
 
-if len(sys.argv) > 1:
-    input_text = sys.argv[1].lower()
-else:
-    print(colors.RED_BOLD + 'No input sentence provided. Using default sentence.' + colors.ENDC)
-    input_text = "you live where".lower()
+def preprocess_sentence(sentence):
+    # lower case to standardize the sentence and remove extra spaces
+    sentence = sentence.lower().strip()
+    # if QM-wig or 6 Ws or How is in the sentence, then it is a question
+    words = ['who', 'what', 'when', 'where', 'why', 'how']
+    question_flag = 0
+    if 'qm-wig' in sentence or any(word in sentence for word in words):
+        question_flag = 1
+    sentence = sentence.replace('qm-wig', '')
 
-decoded_sentence = decode_sequence(input_text)
-print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC, input_text)
-print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
+    # remove punctuation (isn't required but im still including it)
+    sentence = re.sub(r"([?.!,])", "", sentence)
+    # replace numbers with words
+    number_replacements = {'1': " one ", '2':" two ", '3':" three ", '4':" four ", 
+                           '5':" five ", '6':" six ", '7':" seven ", '8':" eight ", 
+                           '9':" nine ", '0':" zero "}
+    for key, value in number_replacements.items():
+        sentence = sentence.replace(key, value)
+    # remove extra spaces
+    sentence = re.sub(r'[" "]+', " ", sentence)
+    sentence = sentence.strip()
 
-print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
+    words = sentence.split()
+    result = []
+    # Empty temporary list to store single letters
+    temp = []
+    for word in words:
+        if len(word) == 1:
+            temp.append(word)
+        else:
+            # If there are any single letters in the temporary list,
+            # join them with a dash and append to the result list
+            if temp:
+                result.append('-'.join(temp))
+                temp = []
+            # Append the non-single letter word to the result list
+            result.append(word)
+    if temp:
+        result.append('-'.join(temp))
+    
+    # Save the dashed words in a list so that it can be replaced later
+    replaced_words = [match for match in result if "-" in match]
+    # Replace the single letters with 'XXXXX' in the result list
+    result = ["xxxxx" if '-' in element else element for element in result]
+    # Join the words in the result list back into a string sentence
+    sentence = ' '.join(result)
+
+    return sentence, question_flag, replaced_words
 
 while True:
     input_text = input(colors.WARNING + 'Input ASL sentence: ' + colors.ENDC)
     st = time.time()
-    input_text = input_text.lower()
-    if input_text == 'exit':
+    prep_input, question_flag, replaced_words = preprocess_sentence(input_text)
+    if prep_input == 'exit':
         break
-    decoded_sentence = decode_sequence(input_text)
+    
+    # if only 1 word is given, then no need to decode
+    decoded_sentence = decode_sequence(prep_input) if len(prep_input.split()) > 1 else prep_input
+
+    # if '?' not in decoded sentence and original input had 'QM-wig' then add '?' at the end
+    if '?' not in decoded_sentence and question_flag == 1:
+        decoded_sentence = decoded_sentence.strip() + '?'
+
+    # Replace the 'XXXXX' with the original single letter words
+    for word in replaced_words:
+        decoded_sentence = decoded_sentence.replace('xxxxx', word.replace('-',''), 1)
+    decoded_sentence = decoded_sentence.replace('xxxxx', '')
+    
+    # if decoded sentence contains ['who', 'what', 'when', 'where', 'why', 'how'] then add '?' at the end
+    if any(word in decoded_sentence for word in ['who', 'what', 'when', 'where', 'why', 'how']) and '?' not in decoded_sentence:
+        decoded_sentence = decoded_sentence.strip() + '?'
+     
+
+    # Outputs
+    print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC + "'" + input_text + "'")
+    print(colors.WARNING + 'Preprocessed Input:' + colors.ENDC + "'" + prep_input + "'")
     print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
     print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
-
 
 print(colors.UNDERLINE_GREEN + 'Total Execution time:' + colors.ENDC, round(time.time() - st_final, 2), 'seconds')
