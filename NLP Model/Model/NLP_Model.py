@@ -14,7 +14,7 @@ class colors:
     UNDERLINE_GREEN = '\033[4m' + '\033[92m'
 
 def read_list_from_file():
-    inputFile = open( "myVar.txt", "r")
+    inputFile = open( "myVars.txt", "r")
     lines = inputFile.readlines()
 
     objects = []
