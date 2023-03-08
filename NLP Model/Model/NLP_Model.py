@@ -14,7 +14,7 @@ class colors:
     UNDERLINE_GREEN = '\033[4m' + '\033[92m'
 
 def read_list_from_file():
-    inputFile = open( "myVar.txt", "r")
+    inputFile = open( "myVars.txt", "r")
     lines = inputFile.readlines()
 
     objects = []
@@ -171,11 +171,20 @@ def preprocess_sentence(sentence):
     sentence = ' '.join(result)
 
     return sentence, question_flag, replaced_words
-
+"""
+sentences_to_test = ['CITY YOU LIVE','TODAY, YOUR LAST CLASS WHAT',
+                     'YOUR NEXT CLASS WHAT','YOUR NAME WHAT','YOU LIKE YOUR WORK',
+                     'YOU WORK WHERE','YOUR NAME WHAT','HELLO MY NAME B O B',
+                     'HOW YOU','ME BUSY BUSY BUSY','ME HAPPY SEE YOU','HOW YOUR DAY',
+                     'ALL DAY WORK ME','YOU WORK YOU DODO','SCHOOL ME WORK']
+sentences_translation = []
+sentences_counter = 0
+"""
 while True:
     input_text = input(colors.WARNING + 'Input ASL sentence: ' + colors.ENDC)
     st = time.time()
     prep_input, question_flag, replaced_words = preprocess_sentence(input_text)
+    #prep_input, question_flag, replaced_words = preprocess_sentence(sentences_to_test[sentences_counter])
     if prep_input == 'exit':
         break
     
@@ -195,11 +204,19 @@ while True:
     if any(word in decoded_sentence for word in ['who', 'what', 'when', 'where', 'why', 'how']) and '?' not in decoded_sentence:
         decoded_sentence = decoded_sentence.strip() + '?'
      
-
-    # Outputs
+    #sentences_translation.append(decoded_sentence)
+    # Outputs 
     print(colors.WARNING + '\nInput ASL sentence:' + colors.ENDC + "'" + input_text + "'")
     print(colors.WARNING + 'Preprocessed Input:' + colors.ENDC + "'" + prep_input + "'")
     print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
     print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
+"""    
+    #sentences_counter += 1
+
+# Print sentences to test and their translations
+for i, sentence in enumerate(sentences_to_test):
+    print(colors.WARNING + 'Input ASL sentence:' + colors.ENDC + "'" + sentence + "'")
+    print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, sentences_translation[i], '\n')
+"""
 
 print(colors.UNDERLINE_GREEN + 'Total Execution time:' + colors.ENDC, round(time.time() - st_final, 2), 'seconds')
