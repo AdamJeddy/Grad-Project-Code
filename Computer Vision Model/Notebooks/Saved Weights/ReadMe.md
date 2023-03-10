@@ -25,6 +25,7 @@ Demo2_AAA.h5 =>
 - No. of Vids per word: 120 vids
 - Length of vid: 25 frames
 - camera position: front cam
+
 Demo2_AAA_dup.h5 => (Duplicated x2 – same vids used twice from Demo.h5 model)
 - People: [Aamir, Adam, Ayesha]
 - Words: ['NoSign','hello','thanks','sorry','you','work','where'] 
