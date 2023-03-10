@@ -1,15 +1,44 @@
 ------- Model Tests ---------
 
-### Demo.h5 / Demo2.h5 => 
-•	People: [Aamir, Adam, Ayesha]
+## Demo3 only A including How
 
-•	Words: ['NoSign','hello','thanks','please','sorry','you','work','where'] 
+Demo3_A_8ws.h5 => (Aamir – 120 vids) including ‘HOW’ 
+- People: [Aamir]
+- Words: ['NoSign','hello','thanks','sorry','you','work','where','how'] 
+- No. of Vids per word: 120 vids
+- Length of vid: 25 frames
+- camera position: front cam
 
-•	No. of Vids per word: 40 vids
+Demo3_A_8ws_dup.h5 => (Aamir – 120 vids x2 duplicate = 240) including ‘HOW’ 
+- People: [Aamir]
+- Words: ['NoSign','hello','thanks','sorry','you','work','where', 'how'] 
+- No. of Vids per word: 240 vids
+- Length of vid: 25 frames
+- camera position: front cam
 
-•	Length of vid: 25 frames
 
-•	Camera position: front cam
+## Same as Demo.h5 but WITHOUT PLEASE
+
+Demo2_AAA.h5 => 
+- People: [Aamir, Adam, Ayesha]
+- Words: ['NoSign','hello','thanks','sorry','you','work','where'] 
+- No. of Vids per word: 120 vids
+- Length of vid: 25 frames
+- camera position: front cam
+Demo2_AAA_dup.h5 => (Duplicated x2 – same vids used twice from Demo.h5 model)
+- People: [Aamir, Adam, Ayesha]
+- Words: ['NoSign','hello','thanks','sorry','you','work','where'] 
+- No. of Vids per word: 120 vids x2 = 240
+- Length of vid: 25 frames
+- camera position: front cam
+
+
+Demo.h5 / Demo2.h5 => 
+- People: [Aamir, Adam, Ayesha]
+- Words: ['NoSign','hello','thanks','please','sorry','you','work','where'] 
+- No. of Vids per word: 40 vids
+- Length of vid: 25 frames
+- Camera position: front cam
 
 
 ------- Parameter Test Cases-----------
