@@ -172,11 +172,11 @@ def preprocess_sentence(sentence):
 
     return sentence, question_flag, replaced_words
 """
-sentences_to_test = ['CITY YOU LIVE','TODAY, YOUR LAST CLASS WHAT',
-                     'YOUR NEXT CLASS WHAT','YOUR NAME WHAT','YOU LIKE YOUR WORK',
-                     'YOU WORK WHERE','YOUR NAME WHAT','HELLO MY NAME B O B',
-                     'HOW YOU','ME BUSY BUSY BUSY','ME HAPPY SEE YOU','HOW YOUR DAY',
-                     'ALL DAY WORK ME','YOU WORK YOU DODO','SCHOOL ME WORK']
+sentences_to_test = ['ALL DAY WORK ME','CITY YOU LIVE','HELLO B O B',
+                     'HELLO MY NAME B O B','HOW YOU','HOW YOUR DAY','ME BUSY BUSY BUSY',
+                     'ME HAPPY SEE YOU','SCHOOL ME WORK','TODAY YOUR LAST CLASS WHAT',
+                     'YOU LIKE YOUR WORK','YOU LIVE WHERE','YOU WORK WHERE','YOU WORK YOU DODO',
+                     'YOUR NAME WHAT','YOUR NEXT CLASS WHAT']
 sentences_translation = []
 sentences_counter = 0
 """
