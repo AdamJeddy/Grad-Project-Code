@@ -84,13 +84,13 @@ Feb 11:
 
 Feb 10:
 
-- (Adam) Added ReadMe file and small update to `NLP_Model.py`
+- Added ReadMe file and small update to `NLP_Model.py`
   - ReadMe file for the `Scripts/Model` directory that shows how to use the NLP Model
   - `NLP_Model.py` now has a loop that keeps taking input
 
 Feb 8:
 
-- (Adam) Major update to `NLP_Model.py`
+- Major update to `NLP_Model.py`
   - Combined generate_batch function with decode_sequence and now it takes an user input instead of a dataset
   - Made it so that the python program can take an argument, this will be the ASL text
   - Removed unused imports
@@ -102,7 +102,7 @@ Feb 8:
 
 Feb 6:
 
-- (Adam) Added a script for NLP model
+- Added a script for NLP model
   - Reorganized `Scripts` folder into 2 parts; Data & Model
     - `Scripts/Data` holds all the scripts related to data extraction
     - `Scripts/Model` holds the python code for the NLP model
@@ -117,7 +117,7 @@ Feb 6:
 
 Feb 5:
 
-- (Adam) Added Encoder_Decoder V4
+- Added Encoder_Decoder V4
   - Removed .pkl files as they are not required (check commit description for more details)
   - Added a file with the dataset rows doubled for testing
 
@@ -125,20 +125,20 @@ Feb 5:
 
 Jan 25:
 
-- (Ayesha) Dataset Addition from this site <https://www.lifeprint.com/asl101/index/sign-language-phrases.htm>
-- (Adam) Made changes to the Encoder_Decoder Notebook for the PoC Presentation
+- Dataset Addition from this site <https://www.lifeprint.com/asl101/index/sign-language-phrases.htm>
+- Made changes to the Encoder_Decoder Notebook for the PoC Presentation
 
 Jan 23:
 
-- (Ayesha) Dataset changes
+- Dataset changes
   - Removing all maths sentences
   - Some sentences had 3 lines (removing those sentences)
-- (Ayesha) Fix for [removingSpacesFromDataset.py](removingSpacesFromDataset.py): Previous code wasn't iterating properly and was pasting the same sentences twice
-- (Adam) Reorganized repository
+- Fix for [removingSpacesFromDataset.py](removingSpacesFromDataset.py): Previous code wasn't iterating properly and was pasting the same sentences twice
+- Reorganized repository
 
-Jan 22: (Adam) Added [Encoder_Decoder_V2.ipynb](Encoder_Decoder_V2.ipynb): 2nd Version of EncoderDecoder
+Jan 22: Added [Encoder_Decoder_V2.ipynb](Encoder_Decoder_V2.ipynb): 2nd Version of EncoderDecoder
 
-Jan 20: (Ayesha) New dataset added, has around 2K rows of data & script written by her
+Jan 20: New dataset added, has around 2K rows of data & script written by her
 
 ## Week 2
 
