@@ -2,6 +2,7 @@
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Week 10](#week-10)
 - [Week 9](#week-9)
 - [Week 8](#week-8)
 - [Week 7](#week-7)
@@ -9,6 +10,22 @@
 - [Week 4](#week-4)
 - [Week 3](#week-3)
 - [Week 2](#week-2)
+
+## Week 10
+
+Mar 19:
+
+- Alphabets added to NLP Dataset
+- Added new NLP Model and Weights trained on new dataset
+
+Mar 15:
+
+- Added NLP weights to handle "Hello [Name]"
+
+Mar 14:
+
+- Added 2 Models trained on data of 10 words and 4 people
+- Updated Script to Record CV Data - `CV_Model.ipynb`
 
 ## Week 9
 
