@@ -2,6 +2,7 @@
 
 ## Table of Contents <!-- omit in toc -->
 
+- [Week 11](#week-11)
 - [Week 10](#week-10)
 - [Week 9](#week-9)
 - [Week 8](#week-8)
@@ -10,6 +11,19 @@
 - [Week 4](#week-4)
 - [Week 3](#week-3)
 - [Week 2](#week-2)
+
+## Week 11
+
+Mar 21:
+
+- Added 4 Models trained on data of 13 words and 3 people
+  - 25 FPS x2 (Max Accuracy and Min Loss)
+  - 13 FPS
+  - 9 FPS
+
+- Added 2 Models trained on data of 13 words and 4 people
+  - 25 FPS
+  - 13 FPS
 
 ## Week 10
 
