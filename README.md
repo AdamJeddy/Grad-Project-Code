@@ -14,6 +14,14 @@
 
 ## Week 11
 
+Mar 25:
+
+- Restructured Saved Weights Folder
+- Added 6 Models trained on data of 13 words and 4 people
+  - 5 FPS x2 (Max Accuracy and Min Loss)
+  - 9 FPS x2 (Max Accuracy and Min Loss)
+  - 13 FPS x2 (Max Accuracy and Min Loss)
+
 Mar 21:
 
 - Added 4 Models trained on data of 13 words and 3 people
