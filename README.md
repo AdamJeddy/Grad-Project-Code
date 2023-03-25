@@ -21,6 +21,7 @@ Mar 25:
   - 5 FPS x2 (Max Accuracy and Min Loss)
   - 9 FPS x2 (Max Accuracy and Min Loss)
   - 13 FPS x2 (Max Accuracy and Min Loss)
+- Added Notebooks that were used for training and recording data
 
 Mar 21:
 
