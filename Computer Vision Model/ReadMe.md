@@ -9,7 +9,7 @@ These are the folders:
 The `Notebooks` folder contains the code for training the model and testing the model. The code is provided in a Jupyter notebook, which allows for an interactive and intuitive way to train the model. The notebook includes instructions for training the model.
 - `Recording Data Notebook`: Contains the code to create folders and Collect Data for training the model by specifying the words and sequences.
 - `Training Notebook`: Contains the code to train the model using the Data collection folders created after recording the data.
-- `Real-time Testing Notebook`: Contains the code to load the trained model and using opencv be able to perform real-time testing for translating the sign action to words.
+- `Real-time Testing Notebook`: Includes the code necessary to load the trained model and run real-time tests to convert sign actions to words using OpenCV.
 - `Main Notebook - Updated2`: Conatains the code and scripts for all the above notebooks and additional testing and parameter tuning.
 
 ## Scripts
