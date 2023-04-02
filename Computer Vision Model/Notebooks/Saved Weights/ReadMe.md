@@ -1,3 +1,23 @@
+------- Final Models ---------
+
+Model_4p_13ws_5fps_new.h5 => 
+- People: 4ppl
+- Words: ['NoSign','hello','you','work','where','how','your','day','b','o','me','live','university']
+- No. of Vids per word: 300 vids
+- Length of vid: 5 frames
+
+Model_4p_13ws_9fps_new.h5 => 
+- People: 4ppl
+- Words: ['NoSign','hello','you','work','where','how','your','day','b','o','me','live','university']
+- No. of Vids per word: 300 vids
+- Length of vid: 9 frames
+
+Model_4p_13ws_13fps_new.h5 => 
+- People: 4ppl
+- Words: ['NoSign','hello','you','work','where','how','your','day','b','o','me','live','university']
+- No. of Vids per word: 300 vids
+- Length of vid: 13 frames
+
 ------- Model Tests ---------
 
 ## Demo3 only A including How
