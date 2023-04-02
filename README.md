@@ -173,10 +173,10 @@ Jan 23:
 - Dataset changes
   - Removing all maths sentences
   - Some sentences had 3 lines (removing those sentences)
-- Fix for [removingSpacesFromDataset.py](removingSpacesFromDataset.py): Previous code wasn't iterating properly and was pasting the same sentences twice
+- Fix for removingSpacesFromDataset.py: Previous code wasn't iterating properly and was pasting the same sentences twice
 - Reorganized repository
 
-Jan 22: Added [Encoder_Decoder_V2.ipynb](Encoder_Decoder_V2.ipynb): 2nd Version of EncoderDecoder
+Jan 22: Added Encoder_Decoder_V2.ipynb: 2nd Version of EncoderDecoder
 
 Jan 20: New dataset added, has around 2K rows of data & script written by her
 
