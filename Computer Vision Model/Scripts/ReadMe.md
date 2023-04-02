@@ -20,9 +20,9 @@ These are the scripts for
 
 ## File descriptions
 
-- `0. .py`: Contains code for Testing Keypoints Extraction using Mediapipe Holistic.
-- `1. .py`: The file that contains the code for creating Data Collection Folders. Input(actions, sequences, sequence_length)
-- `2. .py`: Code that run real-time web-camera feed to collect keypoints using Mediapipe for the words/actions specified. Input(actions, sequences, sequence_length)
+- `0.Extracting Keypoints using Mediapipe.py`: Contains code for Testing Keypoints Extraction using Mediapipe Holistic.
+- `1.Setup Folders for Collection.py`: The file that contains the code for creating Data Collection Folders. Input(actions, sequences, sequence_length)
+- `2.Collect Data for Training and Testing.py`: Code that run real-time web-camera feed to collect keypoints using Mediapipe for the words/actions specified. Input(actions, sequences, sequence_length)
 
 ## How to use
 
