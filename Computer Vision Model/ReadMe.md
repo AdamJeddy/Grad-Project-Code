@@ -14,7 +14,7 @@ The `Scripts` folder contains the scripts for training the model. The code is pr
 
 ## Getting Started
 
-To get started, you will need to have Python version between 3.7 to 3.10.
-Have these dependecies/libraries installed: opencv-python, mediapipe, tensorflow, scikit-learn
-Once you have these dependencies installed, you can open the Jupyter notebook in the `Notebooks` folder and follow the instructions to either create your dataset, train the model or test the model in real-time The trained model can then be used to test the model in real-time to perfrom action/sign prediction. If you want to test the model you can go to the respective notebook for it.
-If you want to perform all these functions you can access the `Main Notebook - Updated2`.
+- To get started, you will need to have Python version between 3.7 to 3.10.
+- Have these dependecies/libraries installed: opencv-python, mediapipe, tensorflow, scikit-learn
+- Once you have these dependencies installed, you can open the Jupyter notebook in the `Notebooks` folder and follow the instructions to either create your dataset, train the model or test the model in real-time The trained model can then be used to test the model in real-time to perfrom action/sign prediction. If you want to test the model you can go to the respective notebook for it.
+- If you want to perform all these functions you can access the `Main Notebook - Updated2`.
