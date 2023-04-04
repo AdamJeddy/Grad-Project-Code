@@ -4,6 +4,7 @@ from keras.models import Model
 import numpy as np
 import time
 import ast
+import os
 
 class colors:
     RED_BOLD = '\033[91m' + '\033[1m'
@@ -171,17 +172,10 @@ def preprocess_sentence(sentence):
     sentence = ' '.join(result)
 
     return sentence, question_flag, replaced_words
-"""
-sentences_to_test = ['ALL DAY WORK ME','CITY YOU LIVE','HELLO B O B',
-                     'HELLO MY NAME B O B','HOW YOU','HOW YOUR DAY','ME BUSY BUSY BUSY',
-                     'ME HAPPY SEE YOU','SCHOOL ME WORK','TODAY YOUR LAST CLASS WHAT',
-                     'YOU LIKE YOUR WORK','YOU LIVE WHERE','YOU WORK WHERE','YOU WORK YOU DODO',
-                     'YOUR NAME WHAT','YOUR NEXT CLASS WHAT']
-sentences_translation = []
-sentences_counter = 0
-"""
+
 while True:
     input_text = input(colors.WARNING + 'Input ASL sentence: ' + colors.ENDC)
+    # os.system('cls')
     st = time.time()
     prep_input, question_flag, replaced_words = preprocess_sentence(input_text)
     #prep_input, question_flag, replaced_words = preprocess_sentence(sentences_to_test[sentences_counter])
@@ -210,13 +204,5 @@ while True:
     print(colors.WARNING + 'Preprocessed Input:' + colors.ENDC + "'" + prep_input + "'")
     print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, decoded_sentence)
     print(colors.UNDERLINE_GREEN + 'Decoding Sequence:' + colors.ENDC, round(time.time() - st, 2), 'seconds')
-"""    
-    #sentences_counter += 1
-
-# Print sentences to test and their translations
-for i, sentence in enumerate(sentences_to_test):
-    print(colors.WARNING + 'Input ASL sentence:' + colors.ENDC + "'" + sentence + "'")
-    print(colors.WARNING + 'Predicted English Translation:' + colors.ENDC, sentences_translation[i], '\n')
-"""
 
 print(colors.UNDERLINE_GREEN + 'Total Execution time:' + colors.ENDC, round(time.time() - st_final, 2), 'seconds')
